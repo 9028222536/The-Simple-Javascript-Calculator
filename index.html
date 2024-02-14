@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Project</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+</head>
+<body>   
+     
+    <div class="title"> My Calculator</div>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+    <PRE>    <div class="buttons">
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="calculateResult()">=</button>
+             <button onclick="appendToDisplay('+')"> +  </button> 
+                <button onclick="deleteLastDigit()">DEL</button> 
+
+        </div>
+    </div> </PRE>
+    
+    <script>
+
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+        
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+        
+        function calculateResult() {
+            const expression = document.getElementById('display').value;
+            try {
+                const result = eval(expression);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        
+        // Get the display element
+const display = document.getElementById('display');
+
+// Function to update the display with the given value
+function appendToDisplay(value) {
+    display.value += value;
+}
+
+// Function to clear the display
+function clearDisplay() {
+    display.value = '';
+}
+
+// Function to calculate the result
+function calculateResult() {
+    const expression = display.value;
+    try {
+        const result = eval(expression);
+        display.value = result;
+    } catch (error) {
+        display.value = 'Error';
+    }
+}
+
+// Event listener for keypress events
+document.addEventListener('keypress', function(event) {
+    // Get the key that was pressed
+    const key = event.key;
+
+    // Check if the key is a number, operator, or special key
+    if (!isNaN(key) || ['+', '-', '*', '/', '.', 'Enter', 'Escape'].includes(key)) {
+        // Prevent default behavior for special keys
+        event.preventDefault();
+
+        // Handle special keys
+        switch (key) {
+            case 'Enter':
+                calculateResult();
+                break;
+            case 'Escape':
+                clearDisplay();
+                break;
+            default:
+                // Add the key to the display
+                appendToDisplay(key);
+        }
+    }
+});
+
+// Function to delete the last character from the display
+function deleteLastDigit() {
+    display.value = display.value.slice(0, -1);
+}
+
+// Event listener for keypress events
+document.addEventListener('keydown', function(event) {
+    // Get the key that was pressed
+    const key = event.key;
+
+    // Check if the key is Backspace
+    if (key === 'Backspace') {
+        // Prevent default behavior for Backspace key
+        event.preventDefault();
+
+        // Delete the last digit from the display
+        deleteLastDigit();
+    }
+});
+
+
+// Event listener for keypress events
+document.addEventListener('keydown', function(event) {
+    // Get the key that was pressed
+    const key = event.key;
+
+    // Check if the key is Escape
+    if (key === 'Escape') {
+        // Prevent default behavior for Escape key
+        event.preventDefault();
+
+        // Clear the display
+        clearDisplay();
+    }
+});
+
+
+
+
+    </script>
+
+
+    <style>
+       
+
+
+        @import url(https://fonts.googleapis.com/css?family=Archivo+Black);
+.calculator {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+#display {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+body{
+    background-color: black;
+}
+
+
+.title{
+    text-align: center;
+  font-size: 4rem;
+  font-family: "Archivo Black";
+  background: rgb(155,93,229);
+  background: linear-gradient(150deg, rgba(155,93,229,1) 0%, rgba(241,91,181,1) 20%, rgba(254,228,64,1) 40%, rgba(0,187,249,1) 60%, rgba(0,245,212,1) 80%);
+  background-size: 20% 20%;
+  background-color: #840b2a;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 5s linear infinite;
+}
+
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 50% 50%;
+	}
+	100% {
+		background-position: 100% 100%;
+	}
+}
+
+
+</style>
+</body>
+</html>
